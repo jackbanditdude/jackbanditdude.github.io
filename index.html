@@ -7,7 +7,7 @@
   <title>Vertical Sliders</title>
   <style>
     .slider-container {
-      width: 600px;
+      width: 350px;
       display: flex;
       justify-content: space-around;
       align-items: center;
@@ -41,6 +41,38 @@
     .sample-group {
       margin-top: 25px;
     }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-top: 1em;
+      color: #555;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      margin-top: 0.5em;
+    }
+
+    button {
+      margin-top: 2em;
+      padding: 0.75em;
+      width: 200px;
+      font-size: 1em;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
   </style>
 </head>
 <body>
@@ -68,8 +100,8 @@
         <div class="value">5</div>
       </div>
     </div>
-    <button onclick="genExample()">Sample Behaviour</button>
-    <button onclick="sendEmail()">Save</button>
+    <!-- <button onclick="genExample()">Sample Behaviour</button> -->
+    <button onclick="sendEmail()">Send Settings</button>
 
     <div class="sample-group">
       <span id="sampleBehav"></span>
