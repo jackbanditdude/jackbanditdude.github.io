@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <title>Vertical Sliders</title>
+  <style>
+    .slider-container {
+      width: 600px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      height: 300px;
+      margin: 50px auto;
+      border: 1px solid #ccc;
+    }
+    .slider-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    input[type="range"] {
+      writing-mode: bt-lr; /* Makes slider vertical */
+      -webkit-appearance: slider-vertical;
+      width: 8px;
+      height: 150px;
+      margin-bottom: 10px;
+    }
+    .value {
+      font-family: sans-serif;
+      font-size: 16px;
+    }
+    .slider-header {
+      text-align: center;
+    }
+    .settings-body {
+      margin: 0 auto;
+      text-align: center;
+    }
+    .sample-group {
+      margin-top: 25px;
+    }
+  </style>
+</head>
+<body>
+  <div class="settings-body">
+    <h1>Behavioural Settings</h1>
+    <div class="slider-container">
+      <div class="slider-group">
+        <div class="slider-header">Friendly<br><br></div>
+        <input type="range" min="0" max="10" value="5" oninput="updateValue(this)" id="sliderFriendly">
+        <div class="value">5</div>
+      </div>
+      <div class="slider-group">
+        <div class="slider-header">Flirty<br><br></div>
+        <input type="range" min="0" max="10" value="5" oninput="updateValue(this)" id="sliderFlirty">
+        <div class="value">5</div>
+      </div>
+      <div class="slider-group">
+        <div class="slider-header">Talkative<br><br></div>
+        <input type="range" min="0" max="10" value="5" oninput="updateValue(this)" id="sliderTalkative">
+        <div class="value">5</div>
+      </div>
+      <div class="slider-group">
+        <div class="slider-header">Sweet<br><br></div>
+        <input type="range" min="0" max="10" value="5" oninput="updateValue(this)" id="sliderSweet">
+        <div class="value">5</div>
+      </div>
+    </div>
+    <button onclick="genExample()">Sample Behaviour</button>
+    <button onclick="sendEmail()">Save</button>
+
+    <div class="sample-group">
+      <span id="sampleBehav"></span>
+    </div>
+  </div>
+
+  <script>
+    function updateValue(slider) {
+      slider.nextElementSibling.textContent = slider.value;
+    }
+
+    function genExample() {
+      let valFriendly = document.getElementById('sliderFriendly');
+      let valFlirty = document.getElementById('sliderFlirty');
+      let valTalkative = document.getElementById('sliderTalkative');
+      let valSweet = document.getElementById('sliderSweet');
+
+      let valSampleBehav = document.getElementById('sampleBehav');
+
+      valSampleBehav.innerHTML = 'Bah';
+    }
+
+    // Initialize EmailJS (replace with your actual user ID)
+    (function() {
+      emailjs.init("am1NaYzfc271uXeYn");
+    })();
+
+    function sendEmail() {
+      let valFriendly = document.getElementById('sliderFriendly').value;
+      let valFlirty = document.getElementById('sliderFlirty').value;
+      let valTalkative = document.getElementById('sliderTalkative').value;
+      let valSweet = document.getElementById('sliderSweet').value;
+
+      const messageText = `Friendly: ${valFriendly}\nFlirty: ${valFlirty}\nTalkative: ${valTalkative}\nSweet: ${valSweet}`;
+
+      emailjs.send("service_1gkxyqc", "template_0xxrkrp", {
+        message: messageText
+      })
+      .then(function(response) {
+        alert("Email sent successfully!");
+      }, function(error) {
+        alert("Error sending email: " + JSON.stringify(error));
+      });
+    }
+
+
+  </script>
+</body>
+</html>
