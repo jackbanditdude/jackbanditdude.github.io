@@ -2,153 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <title>Behavioural Settings</title>
-  <style>
-    .slider-container {
-      width: 350px;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      height: 300px;
-      margin: 50px auto;
-      border: 1px solid #ccc;
-    }
-    .slider-group {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    input[type="range"] {
-      writing-mode: bt-lr; /* Makes slider vertical */
-      -webkit-appearance: slider-vertical;
-      width: 8px;
-      height: 150px;
-      margin-bottom: 10px;
-    }
-    .value {
-      font-family: sans-serif;
-      font-size: 16px;
-    }
-    .slider-header {
-      text-align: center;
-    }
-    .settings-body {
-      margin: 0 auto;
-      text-align: center;
-    }
-    .sample-group {
-      margin-top: 25px;
-    }
-
-    h2 {
-      text-align: center;
-      color: #333;
-    }
-
-    label {
-      display: block;
-      margin-top: 1em;
-      color: #555;
-    }
-
-    input[type="range"] {
-      width: 100%;
-      margin-top: 0.5em;
-    }
-
-    button {
-      margin-top: 2em;
-      padding: 0.75em;
-      width: 200px;
-      font-size: 1em;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 5px;
-    }
-
-    button:hover {
-      background-color: #45a049;
-    }
-
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Relationship Reconnect</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#222222" />
 </head>
 <body>
-  <div class="settings-body">
-    <h1>Behavioural Settings</h1>
-    <div class="slider-container">
-      <div class="slider-group">
-        <div class="slider-header">Friendly<br><br></div>
-        <input type="range" min="0" max="10" value="5" oninput="updateValue(this)" id="sliderFriendly">
-        <div class="value">5</div>
-      </div>
-      <div class="slider-group">
-        <div class="slider-header">Flirty<br><br></div>
-        <input type="range" min="0" max="10" value="5" oninput="updateValue(this)" id="sliderFlirty">
-        <div class="value">5</div>
-      </div>
-      <div class="slider-group">
-        <div class="slider-header">Talkative<br><br></div>
-        <input type="range" min="0" max="10" value="5" oninput="updateValue(this)" id="sliderTalkative">
-        <div class="value">5</div>
-      </div>
-      <div class="slider-group">
-        <div class="slider-header">Sweet<br><br></div>
-        <input type="range" min="0" max="10" value="5" oninput="updateValue(this)" id="sliderSweet">
-        <div class="value">5</div>
-      </div>
-    </div>
-    <p style="width: 350px; margin: 0 auto;">Please allow up to 15 minutes for behavioural changes to take effect. You will receive a text demonstrating the selected settings.</p>
-    <!-- <button onclick="genExample()">Sample Behaviour</button> -->
-    <button onclick="sendEmail()">Send Settings</button>
+  <div id="app">
+    <h1>Choose a Category</h1>
+    <div id="category-buttons"></div>
+    <button id="reset-session">🔄 Reset Session</button>
+  </div>
 
-    <div class="sample-group">
-      <span id="sampleBehav"></span>
+  <div id="question-card" class="hidden">
+    <div class="card-content">
+      <p id="question-text"></p>
+      <button id="close-card">Back to Categories</button>
     </div>
   </div>
 
+  <script src="app.js"></script>
   <script>
-    function updateValue(slider) {
-      slider.nextElementSibling.textContent = slider.value;
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js')
+        .then(() => console.log('Service Worker registered'))
+        .catch(err => console.error('Service Worker error:', err));
     }
-
-    function genExample() {
-      let valFriendly = document.getElementById('sliderFriendly');
-      let valFlirty = document.getElementById('sliderFlirty');
-      let valTalkative = document.getElementById('sliderTalkative');
-      let valSweet = document.getElementById('sliderSweet');
-
-      let valSampleBehav = document.getElementById('sampleBehav');
-
-      valSampleBehav.innerHTML = 'Bah';
-    }
-
-    // Initialize EmailJS (replace with your actual user ID)
-    (function() {
-      emailjs.init("am1NaYzfc271uXeYn");
-    })();
-
-    function sendEmail() {
-      let valFriendly = document.getElementById('sliderFriendly').value;
-      let valFlirty = document.getElementById('sliderFlirty').value;
-      let valTalkative = document.getElementById('sliderTalkative').value;
-      let valSweet = document.getElementById('sliderSweet').value;
-
-      const messageText = `Friendly: ${valFriendly}\nFlirty: ${valFlirty}\nTalkative: ${valTalkative}\nSweet: ${valSweet}`;
-
-      emailjs.send("service_1gkxyqc", "template_0xxrkrp", {
-        message: messageText
-      })
-      .then(function(response) {
-        alert("Email sent successfully!");
-      }, function(error) {
-        alert("Error sending email: " + JSON.stringify(error));
-      });
-    }
-
-
   </script>
 </body>
 </html>

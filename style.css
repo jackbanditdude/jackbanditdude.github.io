@@ -1,0 +1,108 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f9f9f9;
+  margin: 0;
+  padding: 1rem;
+  text-align: center;
+}
+
+h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+#category-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+button.category {
+  flex: 1 1 40%;
+  min-width: 120px;
+  max-width: 180px;
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+button.category:hover {
+  transform: scale(1.05);
+}
+
+#reset-session {
+  margin-top: 2rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  background: #ddd;
+  cursor: pointer;
+}
+
+#question-card {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #222;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  z-index: 1000;
+  overflow-y: auto;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+#question-card.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.card-content {
+  max-width: 90%;
+  text-align: center;
+}
+
+#question-text {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+#close-card {
+  background: #fff;
+  color: #222;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  button.category {
+    flex: 1 1 100%;
+    font-size: 1rem;
+    padding: 0.75rem 1.2rem;
+  }
+
+  #question-text {
+    font-size: 1.2rem;
+  }
+
+  #close-card {
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
+  }
+}
