@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Privacy Policy — Relationship Reconnect</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #100810;
+      --crimson:  #B81E3A;
+      --scarlet:  #E8395A;
+      --rose:     #D94F6B;
+      --text:     #F0E8EA;
+      --muted:    rgba(240,232,234,0.55);
+      --dimmed:   rgba(240,232,234,0.2);
+      --border:   rgba(184,30,58,0.18);
+      --card:     rgba(255,255,255,0.03);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 20% 10%, rgba(184,30,58,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 80% 85%, rgba(184,30,58,0.06) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* ── Nav ── */
+    nav {
+      padding: 32px 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-mark {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .nav-heart { width: 32px; height: 32px; }
+
+    .nav-wordmark {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .nav-wordmark span:first-child {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 10px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .nav-wordmark span:last-child {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 17px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .nav-link {
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--rose); }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 72px 0 56px;
+    }
+
+    .hero-label {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--rose);
+      font-weight: 500;
+      margin-bottom: 20px;
+      animation: fadein 0.6s ease both;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(36px, 8vw, 52px);
+      line-height: 1.12;
+      letter-spacing: -0.5px;
+      color: var(--text);
+      margin-bottom: 16px;
+      animation: fadein 0.6s 0.1s ease both;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--scarlet);
+    }
+
+    .effective-date {
+      font-size: 13px;
+      color: var(--dimmed);
+      animation: fadein 0.6s 0.2s ease both;
+    }
+
+    /* ── Policy body ── */
+    .policy {
+      padding-bottom: 80px;
+    }
+
+    .policy-section {
+      margin-bottom: 48px;
+      animation: fadein 0.5s ease both;
+    }
+
+    .policy-section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 24px;
+      color: var(--text);
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      line-height: 1.3;
+    }
+
+    .policy-section p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 12px;
+    }
+
+    .policy-section p:last-child { margin-bottom: 0; }
+
+    .policy-section ul {
+      list-style: none;
+      padding: 0;
+      margin: 12px 0;
+    }
+
+    .policy-section ul li {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.8;
+      padding-left: 20px;
+      position: relative;
+      margin-bottom: 6px;
+    }
+
+    .policy-section ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--rose);
+    }
+
+    .policy-section a {
+      color: var(--rose);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(217,79,107,0.3);
+      transition: border-color 0.2s;
+    }
+    .policy-section a:hover { border-color: var(--rose); }
+
+    /* Highlight box */
+    .highlight {
+      background: rgba(184,30,58,0.07);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin-bottom: 48px;
+    }
+
+    .highlight p {
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    .highlight p em {
+      font-style: italic;
+      color: var(--scarlet);
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    footer p { font-size: 12px; color: var(--dimmed); }
+
+    footer a {
+      font-size: 12px;
+      color: var(--dimmed);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    footer a:hover { color: var(--rose); }
+
+    @keyframes fadein {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Nav -->
+  <nav>
+    <a class="nav-mark" href="index.html">
+      <svg class="nav-heart" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 76 28 C 76 28 97 28 97 45 C 97 55 88 63 76 72 C 64 63 55 55 55 45 C 55 28 76 28 76 28 Z" fill="#9A1530" opacity="0.65"/>
+        <polygon points="82,70 92,82 70,72" fill="#7A1025" opacity="0.65"/>
+        <path d="M 46 18 C 46 18 72 18 72 38 C 72 51 60 61 46 72 C 32 61 20 51 20 38 C 20 18 46 18 46 18 Z" fill="#D42B4A"/>
+        <polygon points="30,70 18,85 52,72" fill="#A81830"/>
+      </svg>
+      <div class="nav-wordmark">
+        <span>Relationship</span>
+        <span>Reconnect</span>
+      </div>
+    </a>
+    <a class="nav-link" href="index.html">Support</a>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero">
+    <p class="hero-label">Legal</p>
+    <h1>Privacy <em>Policy</em></h1>
+    <p class="effective-date">Effective date: March 1, 2026 &nbsp;·&nbsp; Last updated: March 1, 2026</p>
+  </div>
+
+  <!-- Plain-language summary -->
+  <div class="highlight">
+    <p>The short version: <em>Relationship Reconnect does not collect, store, or share your personal data.</em> No account is required. No analytics are run. What happens between you and the app stays on your device.</p>
+  </div>
+
+  <!-- Policy sections -->
+  <div class="policy">
+
+    <div class="policy-section">
+      <h2>1. Who We Are</h2>
+      <p>Relationship Reconnect is an independent app developed and published by Christopher Boyd ("we," "us," or "our"). If you have any questions about this policy, you can reach us at <a href="mailto:relationshipreconnectsupport@gmail.com">relationshipreconnectsupport@gmail.com</a>.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>2. Information We Do Not Collect</h2>
+      <p>We do not collect, process, or store any personal information. Specifically, we do not collect:</p>
+      <ul>
+        <li>Your name, email address, or any contact information</li>
+        <li>Your location or device identifiers</li>
+        <li>Usage data, analytics, or behavioral tracking</li>
+        <li>The content of any conversations you have</li>
+        <li>Crash reports or diagnostics beyond what Apple provides by default</li>
+      </ul>
+      <p>No account is required to use Relationship Reconnect. You are never asked to sign in or provide any personal information.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>3. Data Stored on Your Device</h2>
+      <p>The app stores a small amount of data locally on your device using Apple's standard on-device storage (SharedPreferences). This data never leaves your device and includes only:</p>
+      <ul>
+        <li>Which question packs you have unlocked</li>
+        <li>Which questions you have already seen in each pack</li>
+        <li>Whether you have completed the first-time onboarding</li>
+      </ul>
+      <p>This data exists solely to make the app function correctly across sessions. You can reset it at any time using the Reset Session button on the home screen. Deleting the app removes all locally stored data.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>4. In-App Purchases</h2>
+      <p>Relationship Reconnect offers optional in-app purchases for additional question packs. All purchases are processed entirely by Apple through the App Store. We do not see, receive, or store your payment information at any point.</p>
+      <p>Apple's handling of payment data is governed by <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple's Privacy Policy</a>. We receive only a confirmation from Apple that a purchase was completed, which is used to unlock the corresponding content on your device.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>5. Third-Party Services</h2>
+      <p>Relationship Reconnect does not integrate any third-party analytics, advertising, or tracking services. We do not use tools such as Firebase, Google Analytics, Facebook SDK, or any similar platforms.</p>
+      <p>The only third-party interaction is with Apple's StoreKit framework for processing in-app purchases, which is governed by Apple's own privacy policies.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>6. Children's Privacy</h2>
+      <p>Relationship Reconnect is designed for use by adults in romantic relationships. The app is rated 4+ on the App Store and does not knowingly collect any information from anyone, including children under the age of 13. Because we collect no data at all, there is nothing to delete or request on behalf of a minor.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>7. Your Rights</h2>
+      <p>Because we do not collect personal data, there is no data for us to provide, correct, or delete on your behalf. If you have questions about data held by Apple in connection with your App Store account or purchases, please refer to <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple's Privacy Policy</a> and their data request process.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>8. Changes to This Policy</h2>
+      <p>If we make material changes to this privacy policy — for example, if a future version of the app introduces new features that change how data is handled — we will update this page and revise the "Last updated" date above. We encourage you to review this policy periodically.</p>
+      <p>Continued use of the app after any changes constitutes acceptance of the updated policy.</p>
+    </div>
+
+    <div class="policy-section">
+      <h2>9. Contact Us</h2>
+      <p>If you have any questions or concerns about this privacy policy or the app, please contact us at:</p>
+      <p><a href="mailto:relationshipreconnectsupport@gmail.com">relationshipreconnectsupport@gmail.com</a></p>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 Christopher Boyd. All rights reserved.</p>
+    <a href="../support/">Support</a>
+  </footer>
+
+</div>
+</body>
+</html>

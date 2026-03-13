@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Support — Relationship Reconnect</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #100810;
+      --bg2:      #1A0E1A;
+      --crimson:  #B81E3A;
+      --scarlet:  #E8395A;
+      --rose:     #D94F6B;
+      --text:     #F0E8EA;
+      --muted:    rgba(240,232,234,0.55);
+      --dimmed:   rgba(240,232,234,0.2);
+      --border:   rgba(184,30,58,0.18);
+      --card:     rgba(255,255,255,0.03);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ── Ambient glow ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 20% 10%, rgba(184,30,58,0.14) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 80% 85%, rgba(184,30,58,0.07) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Layout ── */
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* ── Nav ── */
+    nav {
+      padding: 32px 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-mark {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .nav-heart {
+      width: 32px;
+      height: 32px;
+    }
+
+    .nav-wordmark {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .nav-wordmark span:first-child {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 10px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .nav-wordmark span:last-child {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 17px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .nav-link {
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--rose); }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 80px 0 64px;
+      text-align: center;
+    }
+
+    .hero-label {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--rose);
+      font-weight: 500;
+      margin-bottom: 20px;
+      animation: fadein 0.6s ease both;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(36px, 8vw, 54px);
+      line-height: 1.12;
+      letter-spacing: -0.5px;
+      color: var(--text);
+      margin-bottom: 20px;
+      animation: fadein 0.6s 0.1s ease both;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--scarlet);
+    }
+
+    .hero p {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto;
+      animation: fadein 0.6s 0.2s ease both;
+    }
+
+    /* ── FAQ ── */
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--rose);
+      font-weight: 500;
+      margin-bottom: 28px;
+    }
+
+    .faq {
+      padding-bottom: 64px;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 24px 0;
+      animation: fadein 0.5s ease both;
+    }
+
+    .faq-item:first-of-type { border-top: 1px solid var(--border); }
+
+    .faq-q {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .faq-a {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .faq-a a {
+      color: var(--rose);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(217,79,107,0.3);
+      transition: border-color 0.2s;
+    }
+    .faq-a a:hover { border-color: var(--rose); }
+
+    /* ── Contact card ── */
+    .contact-section {
+      padding-bottom: 80px;
+    }
+
+    .contact-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .contact-card h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 32px;
+      color: var(--text);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .contact-card h2 em {
+      font-style: italic;
+      color: var(--scarlet);
+    }
+
+    .contact-card p {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 28px;
+      max-width: 360px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .contact-btn {
+      display: inline-block;
+      padding: 14px 32px;
+      border-radius: 12px;
+      background: linear-gradient(180deg, #EE4060, #B81E3A);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      letter-spacing: 0.3px;
+      box-shadow: 0 8px 24px rgba(184,30,58,0.35);
+      transition: opacity 0.2s, transform 0.1s;
+    }
+    .contact-btn:hover { opacity: 0.88; }
+    .contact-btn:active { transform: scale(0.98); }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    footer p {
+      font-size: 12px;
+      color: var(--dimmed);
+    }
+
+    footer a {
+      font-size: 12px;
+      color: var(--dimmed);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    footer a:hover { color: var(--rose); }
+
+    /* ── Animations ── */
+    @keyframes fadein {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Nav -->
+  <nav>
+    <a class="nav-mark" href="index.html">
+      <svg class="nav-heart" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 76 28 C 76 28 97 28 97 45 C 97 55 88 63 76 72 C 64 63 55 55 55 45 C 55 28 76 28 76 28 Z" fill="#9A1530" opacity="0.65"/>
+        <polygon points="82,70 92,82 70,72" fill="#7A1025" opacity="0.65"/>
+        <path d="M 46 18 C 46 18 72 18 72 38 C 72 51 60 61 46 72 C 32 61 20 51 20 38 C 20 18 46 18 46 18 Z" fill="#D42B4A"/>
+        <polygon points="30,70 18,85 52,72" fill="#A81830"/>
+      </svg>
+      <div class="nav-wordmark">
+        <span>Relationship</span>
+        <span>Reconnect</span>
+      </div>
+    </a>
+    <a class="nav-link" href="../privacy/">Privacy Policy</a>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero">
+    <p class="hero-label">Support</p>
+    <h1>We're here<br/>to <em>help.</em></h1>
+    <p>Find answers to common questions below, or reach out directly and we'll get back to you.</p>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq">
+    <p class="section-label">Common Questions</p>
+
+    <div class="faq-item">
+      <p class="faq-q">How do I restore my purchases on a new device?</p>
+      <p class="faq-a">Open the app and tap the Store button (🛍️) in the top right of the home screen. At the bottom of the store sheet, tap <strong>Restore Purchases</strong>. Your unlocked packs will be restored automatically as long as you're signed into the same Apple ID used for the original purchase.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">I was charged but my packs didn't unlock. What do I do?</p>
+      <p class="faq-a">First, try tapping Restore Purchases in the Store. If that doesn't work, force-close the app and reopen it — purchases sometimes need a moment to process. If the issue persists, <a href="mailto:relationshipreconnectsupport@gmail.com">contact us</a> with your Apple ID email and we'll sort it out.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">Can I use the app on multiple devices?</p>
+      <p class="faq-a">Yes. Any packs you've purchased are tied to your Apple ID and can be restored on any device signed into that account using the Restore Purchases button.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">I've seen all the questions in a pack. What now?</p>
+      <p class="faq-a">You can reset your session from the home screen by tapping the Reset Session button at the bottom. This lets you revisit all questions across every category. Your purchases are not affected by resetting.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">Does the app require an account or internet connection?</p>
+      <p class="faq-a">No account is required. The app works fully offline once downloaded. An internet connection is only needed at the moment of purchase.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">What is the "Unlock Everything" bundle?</p>
+      <p class="faq-a">The Unlock Everything bundle is a one-time $4.99 purchase that unlocks all 11 paid question packs — a saving versus buying each at $0.99 individually. There are no subscriptions or recurring charges.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">How do I request a refund?</p>
+      <p class="faq-a">Refunds for App Store purchases are handled by Apple directly. Visit <a href="https://reportaproblem.apple.com" target="_blank" rel="noopener">reportaproblem.apple.com</a>, sign in with your Apple ID, find the purchase, and request a refund. We have no ability to issue refunds ourselves.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">Will there be new question packs added?</p>
+      <p class="faq-a">Yes — more packs are planned. If you have a category you'd love to see, <a href="mailto:relationshipreconnectsupport@gmail.com">let us know</a>. We read every message.</p>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <div class="contact-section">
+    <div class="contact-card">
+      <h2>Still need <em>help?</em></h2>
+      <p>Send us a message and we'll get back to you as soon as we can — usually within a day or two.</p>
+      <a class="contact-btn" href="mailto:relationshipreconnectsupport@gmail.com">Get in Touch</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 Christopher Boyd. All rights reserved.</p>
+    <a href="../privacy/">Privacy Policy</a>
+  </footer>
+
+</div>
+</body>
+</html>
